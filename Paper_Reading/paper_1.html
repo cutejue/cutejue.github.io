@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+  	<title>Paper Reading</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Responsive Html5 Templates">
+    <meta name="author" content="">
+
+	<!-- styles -->
+	
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/menu.min.css">
+	
+	
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="../js/html5shiv.js"></script>
+        <script src="../js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body id="wrapper">
+
+	<!-- /////////////////////////////////////////Navigation -->
+	<!--button id="mm-menu-toggle" class="mm-menu-toggle">Toggle Menu</button>
+	<nav id="mm-menu" class="mm-menu">
+		<div class="mm-menu__header">
+			<h2 class="mm-menu__title">KOMPLEET</h2>
+		</div>
+		<ul class="mm-menu__items">
+			<li class="mm-menu__item">
+			  <a class="mm-menu__link" href="index.html">
+				<span class="mm-menu__link-text"><i class="fa fa-home"></i> Home</span>
+			  </a>
+			</li>
+			<li class="mm-menu__item">
+			  <a class="mm-menu__link" href="index.html">
+				<span class="mm-menu__link-text"><i class="fa fa-user"></i> Blog</span>
+			  </a>
+			</li>
+			<li class="mm-menu__item">
+			  <a class="mm-menu__link" href="single.html">
+				<span class="mm-menu__link-text"><i class="fa fa-inbox"></i> About</span>
+			  </a>
+			</li>
+			<li class="mm-menu__item">
+			  <a class="mm-menu__link" href="contact.html">
+				<span class="mm-menu__link-text"><i class="fa fa-heart"></i> Contact</span>
+			  </a>
+			</li>
+		</ul>
+	</nav><!-- /nav -->
+	
+	<!-- /////////////////////////////////////////Header -->
+	<!--div class="top-header">
+		<div class="container">
+			<ul class="list-inline top-social">
+				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+				<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+				<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+			</ul>
+		</div>
+	</div-->
+	<div class="svg-container nav-svg svg-block">
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1950 150">
+		  <g transform="translate(0,-902.36218)"></g>
+		  <path d="m 898.41609,-33.21176 0.01,0 -0.005,-0.009 -0.005,0.009 z"></path>
+		  <path d="m 898.41609,-33.21176 0.01,0 -0.005,-0.009 -0.005,0.009 z"></path>
+		  <path d="M 0,150 0,0 1925,0"></path>
+		</svg>
+	</div -->
+	<header id="masthead" class="site-header" role="banner" style="background-position: 50% -120px;">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="site-branding">
+				<a href="../index.html" title="Yingjie Gu"><img class="site-logo" src="../images/logo_head.png" alt="Yingjie Gu"></a>
+			</div><!-- .site-branding -->
+		</div>
+		<div class="svg-container header-svg svg-block">
+			<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1890 150">
+				<g transform="translate(0,-902.36218)"></g>
+				  <path d="m 898.41609,-33.21176 0.01,0 -0.005,-0.009 -0.005,0.009 z"></path>
+				  <path d="m 898.41609,-33.21176 0.01,0 -0.005,-0.009 -0.005,0.009 z"></path>
+				  <path d="m 1925,0 0,150 -1925,0"></path>
+			</svg>
+		</div>		
+	</header><!-- #masthead -->
+	<!-- Header -->
+	
+	
+	<!-- /////////////////////////////////////////Content -->
+	<div id="page-content" class="sub-page">
+		
+		<!-- //////////// -->
+		<article class="box-content container">
+			<div class="svg-container single-post-svg svg-block">
+				<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1890 150">
+					<g transform="translate(0,-902.36218)"></g>
+					  <path d="m 898.41609,-33.21176 0.01,0 -0.005,-0.009 -0.005,0.009 z"></path>
+					  <path d="m 898.41609,-33.21176 0.01,0 -0.005,-0.009 -0.005,0.009 z"></path>
+					  <path d="m 1925,0 0,150 -1925,0"></path>
+				</svg>
+			</div>
+			<div class="post" style="">
+				<h1 class="entry-title">GRAPHFLOW: Exploiting Conversation Flow with Graph Neural Networks for Conversational Machine Comprehension</h1>
+					<!--div class="single-thumb">
+						<img src="images/single.jpg" alt="About">
+					</div-->
+				<a href="https://arxiv.org/abs/1908.00059">https://arxiv.org/abs/1908.00059</a>
+				<p>Yu Chen, Lingfei Wu, Mohammed J.Zaki 发表于 ICML 2019 Workshop</p>
+				<h2>摘要</h2>
+				<p>问题：已有的方法并不能有效地捕捉conversation history，因此无法解决包含有<span style="color:#DC143C">共指（coreference）和省略（ellipsis）</span>的问题</p>
+				<p>方法：作者提出了一个基于图神经网络（GNN）的网络GRAPHFLOW，该网络首先能够动态地在每次对话时从段落文本中构建一个<span style="color:#DC143C">问题感知的上下文图（question-aware context graph）</span>；
+				然后通过一种新的流机制去建模上下文图的序列中的<span style="color:#DC143C">时序依赖关系(temporal dependencies)</span></p>
+				<p>结果：该模型在CoQA数据集中比<span style="color:#DC143C">FlowQA提升了2.3%</span>，比<span style="color:#DC143C">SDNet提升了0.7%</span></p>
+				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+				<h2>算法</h2>
+				<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril.</p>
+				<h2>Heading 1</h2>
+				<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse lorem ipsum dolor sit amet.</p>
+				<h2>Heading 2</h2>
+				<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. At vero eos et accusam et justo.</p>
+				<h2>Heading 3</h2>
+				<blockquote><p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet vultatup duista.</p></blockquote>
+				<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum hendrerit in vulputate velit esse molestie.</p>
+				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+				<p><code>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</code></p>
+				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+				<div class="note">
+				  <ol>
+					<li>Lorem ipsum</li>
+					<li>Sit amet vultatup nonumy</li>
+					<li>Duista sed diam</li>
+				  </ol>
+				  <div class="clear"></div>
+				</div>
+				<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+				<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores.</p>
+			</div>
+			<div class="svg-container single-post-svg single-svg-bottom svg-block">
+				<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1920 150">
+				  <g transform="translate(0,-902.36218)"></g>
+				  <path d="m 898.41609,-33.21176 0.01,0 -0.005,-0.009 -0.005,0.009 z"></path>
+				  <path d="m 898.41609,-33.21176 0.01,0 -0.005,-0.009 -0.005,0.009 z"></path>
+				  <path d="M 0,150 0,0 1925,0"></path>
+				</svg>
+			</div>
+		</article>
+		
+		<div class="comment-respond container">
+			<h3 id="reply-title" class="comment-reply-title">Leave a Reply</h3>
+			<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p>
+			<div id="comment_form">
+				<form name="form1" id="comment" method="post" action="">
+					<label>
+					<span>Your message here:</span>
+					<textarea name="message" id="message"></textarea>
+					</label>
+					<label>
+					<span>Enter your name:</span>
+					<input type="text"  name="name" id="name" required>
+					</label>
+					<label>
+					<span>Enter your email:</span>
+					<input type="email"  name="email" id="email" required>
+					</label>
+					<label>
+					<span>Enter your website:</span>
+					<input type="text"  name="website" id="website">
+					</label>
+					<center><input class="sendButton" type="submit" name="Submit" value="Submit"></center>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="svg-container footer-svg svg-block">
+		
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1890 150">
+			<g transform="translate(0,-902.36218)"></g>
+			  <path d="m 898.41609,-33.21176 0.01,0 -0.005,-0.009 -0.005,0.009 z"></path>
+			  <path d="m 898.41609,-33.21176 0.01,0 -0.005,-0.009 -0.005,0.009 z"></path>
+			  <path d="m 1925,0 0,150 -1925,0"></path>
+		</svg>
+		</div>
+	<!-- /////////////////////////////////////////Footer -->
+	<footer>
+		<div class="wrap-footer">
+			<div class="container">
+				<!--div class="row">
+					<div class="col-md-4">
+						<span class="copyright">Copyright &copy; Your Website <br/> More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></span>
+					</div>
+					<div class="col-md-4">
+						<ul class="list-inline social-buttons">
+							<li><a href="#"><i class="fa fa-twitter"></i></a>
+							</li>
+							<li><a href="#"><i class="fa fa-facebook"></i></a>
+							</li>
+							<li><a href="#"><i class="fa fa-linkedin"></i></a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<ul class="list-inline quicklinks">
+							<li><a href="#">Privacy Policy</a>
+							</li>
+							<li><a href="#">Terms of Use</a>
+							</li>
+						</ul>
+					</div>
+				</div-->
+			</div>
+		</div>
+	</footer>
+	<!-- Footer -->
+	
+	<!-- Top Slider -->
+    <script src="../js/jquery.js"></script>
+   
+	<!-- Menu Js -->
+	<script src="../js/materialMenu.js"></script>
+	<script>
+	  var menu = new Menu;
+	</script>
+	
+	<!-- Bootstrap Core JavaScript -->
+	<script src="../js/bootstrap.min.js"></script>
+</body>
+</html>
