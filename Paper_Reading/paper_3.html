@@ -107,48 +107,21 @@
 				</svg>
 			</div>
 			<div class="post" style="">
-				<h1 class="entry-title">GRAPHFLOW: Exploiting Conversation Flow with Graph Neural Networks for Conversational Machine Comprehension</h1>
+				<h1 class="entry-title">Joint Type Inference on Entities and Relations via Graph Convolutional Networks</h1>
 					<!--div class="single-thumb">
 						<img src="images/single.jpg" alt="About">
 					</div-->
-				<a href="https://arxiv.org/abs/1908.00059">https://arxiv.org/abs/1908.00059</a>
-				<p style="font-size:20px">Yu Chen, Lingfei Wu, Mohammed J.Zaki 发表于 ICML 2019 Workshop</p>
+				<a href="https://www.aclweb.org/anthology/P19-1131/">https://www.aclweb.org/anthology/P19-1131/</a>
+				<p style="font-size:20px">Changzhi Sun, Yan Zhang, Yuanbin Wu, et al. 发表于 ACL 2019 </p>
 				<p style="font-size:30px"><b>摘要</b></p>
-				<p style="font-size:20px"><b>问题</b>：已有的方法并不能有效地捕捉conversation history，因此无法解决包含有<span style="color:#DC143C">共指（coreference）和省略（ellipsis）</span>的问题</p>
-				<p style="font-size:20px"><b>方法</b>：作者提出了一个基于图神经网络（GNN）的网络GRAPHFLOW，该网络首先能够动态地在每次对话时从段落文本中构建一个<span style="color:#DC143C">问题感知的上下文图（question-aware context graph）</span>；
-				然后通过一种新的流机制去建模上下文图的序列中的<span style="color:#DC143C">时序依赖关系(temporal dependencies)</span></p>
-				<p style="font-size:20px"><b>结果</b>：该模型在CoQA数据集中比<span style="color:#DC143C">FlowQA提升了2.3%</span>，比<span style="color:#DC143C">SDNet提升了0.7%</span></p>
-				<p style="font-size:30px"><b>算法</b></p>>
-				<p style="font-size:20px">GRAPHFLOW包含了三层结构：Encoding layer，Reasoning layer 以及 Prediction layer. 网络架构如下：</br><img class="img-responsive" src="paper_1_images/0.png"></p>
-				<p style="font-size:20px"><b>向量表示</b>：</br>
-				Pretrained word embedding: 300-dim GloVe, 1024-dim BERT </br>Aligned question embeddings: 每个段落中的单词对每一轮问题中单词的注意力值，注意力权重系数计算如下
-					</br><div align="center"><img class="img-responsive" src="paper_1_images/1.png"></div></br><p style="font-size:20px">Linguistic features: 12-dim POS, 8-dim NER, 3-dim em</br>最终表示：</p></br>
-				<div align="center"><img class="img-responsive" src="paper_1_images/2.png"><img class="img-responsive" src="paper_1_images/3.png"></div></p>
-				<p style="font-size:20px"><b>推理层</b>: </br>
-				Question Understanding，首先让每个问题通过BiLSTM得到上下文嵌入，然后通过Self-Attention计算得到第i个问题的向量表示，最后将所有T个问题按顺序通过LSTM进行编码得到包含有历史感知（history-aware）的问题向量（question vectors）：</br>
-				<span style="color:#DC143C"><b>这里使用了LSTM而不是BiLSTM，我认为是因为对话中问题历史是单向的，不可以反向编码以泄露未来信息</b></span></br>
-				<div align="center"> <img class="img-responsive" src="paper_1_images/4.png"><img class="img-responsive" src="paper_1_images/5.png"><img class="img-responsive" src="paper_1_images/6.png"></div></p>
-				<p style="font-size:20px">Graph learner,目的是动态地构建一个权重图（weighted graph）来建模每一轮问题中上下文单词的语义关系（semantic relationships）</br>
-				作者认为全连接的上下文图存在计算昂贵(computationally expensive)以及对推理帮助很小(little sense for reasoning)两个缺点，因此作者针对通过Self-Attention机制后的段落向量的权重采用了K临近算法（KNN, K nearst neighbors），获取包括自身节点在内的K个最相关的邻近节点，之后采用softmax函数进行正则化得到稀疏矩阵：
-				</br><div align="center"><img class="img-responsive" src="paper_1_images/7.png"><img class="img-responsive" src="paper_1_images/8.png"></div> </p>
-				<p style="font-size:20px">Graph-Flow,作者使用了门图神经网络（Gated GNN）作为GNN，设置了L层GF layer，通过下列公式实现了图节点的更新：</br>
-				<div align="center"><img class="img-responsive" src="paper_1_images/9.png"><img class="img-responsive" src="paper_1_images/10.png"></div> </br>
-				为了方便起见，作者将GF机制定义为：</br>
-				<div align="center"><img class="img-responsive" src="paper_1_images/11.png"></div></p>
-				<p style="font-size:20px">Multi-level Graph Reasoning，为了得到上述公式中的C，作者将嵌入层输出的段落表示喂给BiLSTM，之后首先将初始的C和稀疏并正则化后的矩阵一起通过Graph-Flow机制得到第1层的C，
-				然后与先前的Align操作相似，分别拿取第i轮的问题Q和段落C的向量进行co-attention操作，然后和之前得到的第1层的C一起拼接输入BiLSTM得到中间表示，最后再一起通过Graph-Flow机制得到第2层的C
-				，具体公式如下，这些公式一一对应网络结构的中间部分：</br><div align="center"><img class="img-responsive" src="paper_1_images/12.png"></div></p>
-				<p style="font-size:20px"><b>预测层</b>: </br>该层的结构与Huang等人，Zhu等人的结构类似，具体可以参考FlowQA和SDNet</p>
-				<p style="font-size:30px"><b>实验</b></p>
-				<p style="font-size:20px"><b>数据集和评价指标</b></p>
-				<p style="font-size:20px">CoQA，F1值和QuAC，F1值、HEQ-Q、HEQ-D，</p>
-				<p style="font-size:20px"><b>实验结果</b></p>
-				<p style="font-size:20px">本文主要对比的模型是部分基线模型(baseline)以及当前的两个SOTA模型FlowQA和SDNet，对比结果如下：</br>
-				<div align="center"><img class="img-responsive" src="paper_1_images/13.png"></div></p>
-				<p style="font-size:30px"><b>评价</b></p>
-				<p style="font-size:20px"><span style="color:#DC143C">个人认为该模型的优点在于创新地将GNN运用到了MRC领域，为后续的研究提供了新的思路；但是该模型采用了BERT在CoQA上仍然只有78.3的分数，消除了BERT下降到70.2，说明推理部分其实并没有很强的推理能力</span></p>
-				<p> </p>
-				<a href="paper_reading.html" style="font-size:24px">Back to the list</a>
+				<p style="font-size:20px"><b>问题</b>：依存树包含了丰富的对实体关系抽取有用的结构化信息，但如何有效地利用依存树中的相关信息而忽略不相关信息目前仍是挑战，现有的方法是<span style="color:#DC143C">基于规则的硬剪枝策略（rule-based hard-pruning）</span>，但并不能实现很好的结果</p>
+				<p style="font-size:20px"><b>方法</b>：作者提出了一个<span style="color:#DC143C">基于注意力引导图卷积神经网络网络（AGGCN，Attention Guided Graph Convolutional Networks）</span>的方法，该网络可以被认为是一种<span style="color:#DC143C">软剪枝（soft-pruning）方法</span>，将原始的依存树转化为全连接的边权重图（FC edge-weighted graph），能够自动地学习如何有选择地处理依存树中有关联的子结构（sub-structures）</p>
+				<p style="font-size:20px"><b>结果</b>：该模型在<span style="color:#DC143C">跨句n元关系抽取（cross-sentence n-ary RE）和大规模句子级别关系抽取（large-scale sentence-level RE）任务中取得了比之前方法更好的结果8%和6%</span></p>
+				<p style="font-size:30px"><b>算法</b></p>
+				<p style="font-size:30px">模型架构图如下：<img class="img-responsive" src="paper_3_images/0.png"></br>作者将模型分为三个部分：Attention guided layer、Densely connected layer以及Linear combination layer</p>
+				<p style="font-size:20px"><b>GCNs</b>：</br>
+				<h2 style="color:#000000"><b>实验</b></h2>
+				<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores.</p>
 			</div>
 			<div class="svg-container single-post-svg single-svg-bottom svg-block">
 				<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1920 150">
