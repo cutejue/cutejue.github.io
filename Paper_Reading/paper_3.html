@@ -114,14 +114,31 @@
 				<a href="https://www.aclweb.org/anthology/P19-1131/">https://www.aclweb.org/anthology/P19-1131/</a>
 				<p style="font-size:20px">Changzhi Sun, Yan Zhang, Yuanbin Wu, et al. 发表于 ACL 2019 </p>
 				<p style="font-size:30px"><b>摘要</b></p>
-				<p style="font-size:20px"><b>问题</b>：依存树包含了丰富的对实体关系抽取有用的结构化信息，但如何有效地利用依存树中的相关信息而忽略不相关信息目前仍是挑战，现有的方法是<span style="color:#DC143C">基于规则的硬剪枝策略（rule-based hard-pruning）</span>，但并不能实现很好的结果</p>
-				<p style="font-size:20px"><b>方法</b>：作者提出了一个<span style="color:#DC143C">基于注意力引导图卷积神经网络网络（AGGCN，Attention Guided Graph Convolutional Networks）</span>的方法，该网络可以被认为是一种<span style="color:#DC143C">软剪枝（soft-pruning）方法</span>，将原始的依存树转化为全连接的边权重图（FC edge-weighted graph），能够自动地学习如何有选择地处理依存树中有关联的子结构（sub-structures）</p>
-				<p style="font-size:20px"><b>结果</b>：该模型在<span style="color:#DC143C">跨句n元关系抽取（cross-sentence n-ary RE）和大规模句子级别关系抽取（large-scale sentence-level RE）任务中取得了比之前方法更好的结果8%和6%</span></p>
+				<p style="font-size:20px"><b>问题</b>：任务<span style="color:#DC143C">联合实体关系抽取（joint entity relation extraction）</span></p>
+				<p style="font-size:20px"><b>方法</b>：作者首先标识实体span，之后在实体和关系类型上进行联合推理（joint inference），该部分使用了新的<span style="color:#DC143C">图卷积网络（GCN）</span>对<span style="color:#DC143C">实体-关系二分（二偶）图（Entity-Relation bipartite graph）</span>进行操作
+				</br>作者引入了<span style="color:#DC143C">二元关系分类任务（binary relation classification，用来决定两个实体之间是否形成有效的关系，即valid relation）</span>的输出作为图神经网络的输入，这样可以使邻接矩阵更加具有可解释性</p>
+				<p style="font-size:20px"><b>结果</b>：该模型在<span style="color:#DC143C">ACE05数据集</span>上进行实验，结果显示在实体性能上超越现有的联合模型，在关系性能上能和现有的SOTA模型竞争</p>
 				<p style="font-size:30px"><b>算法</b></p>
-				<p style="font-size:30px">模型架构图如下：<img class="img-responsive" src="paper_3_images/0.png"></br>作者将模型分为三个部分：Attention guided layer、Densely connected layer以及Linear combination layer</p>
-				<p style="font-size:20px"><b>GCNs</b>：</br>
+				<p style="font-size:20px">作者发现：现有的方法能够正确识别出实体span（90% F1），但实体标签却容易出错（83% F1）；同时他们发现联合推理实体和关系类型比单独推理各自类型要效果好（例如PER-SOC关系可以一定程度上推理出PER实体）。
+				</br>因此作者提出了如下模型：
+				<img class="img-responsive" src="paper_3_images/0.png"></br>作者首先给出定义，把句子s=W1,...,Ws抽取成大集合E和R，集合中e为实体e1和实体类型标签y1，如person（PER），r为（e1,y1,e2,y2,l），l为关系类型标签。</p>
+				<p style="font-size:20px"><b>Entity Span Detection</b>：</br>作者采用了BILOU序列标注方案，即Begin、Inside、Last、Outside以及U（single word span），使用BiLSTM得到前后向拼接的向量，之后使用Softmax函数进行分类：
+				<div align="center"><img class="img-responsive" src="paper_3_images/1.png"><img class="img-responsive" src="paper_3_images/2.png"><img class="img-responsive" src="paper_3_images/3.png"></div></p>
+				<p style="font-size:20px"><b>Entity-Relation Bipartite Graph</b>：</br>作者构建图时没有直接将实体节点连接而是通过一个关系节点进行连接，作者认为：a)不是所有的实体节点是有用的，关系节点起到了桥梁的作用 b)GCN并不适合与全连接图，对于一个实体节点，观察其参与的节点的唯一的方法是通过关系节点：
+				<div align="center"><img class="img-responsive" src="paper_3_images/4.png"></div></p>
+				<p style="font-size:20px"><span style="color:#DC143C">个人认为：这里的关系节点起到了门（gate）的作用，用来控制实体节点的访问，可以有选择地将有用的实体节点加入网络运算，节约计算资源</span></p>
+				<p style="font-size:20px">这里作者引入了一个二元关系模型{0,1}来预测两个实体之间的关系，其中若概率大于0.5则取1，否则取0，对角线为1（作者称之为hard binary value，之后还采用了soft value进行实验，即直接使用概率而不是1和0）：
+				<div align="center"><img class="img-responsive" src="paper_3_images/5.png"></div></p>
+				<p style="font-size:20px"><b>Entity and Relation Nodes Embedding</b>：<div align="center"><img class="img-responsive" src="paper_3_images/6.png"></div></p>
+				<p style="font-size:20px">实体节点嵌入：将BiLSTM分类模型对应的隐藏层权重输入CNN+MLP得到</br>关系节点嵌入：由两个实体节点嵌入+两个实体中间单词向量+两个实体span组的前后单词向量</p>
+				<p style="font-size:20px"><b>Joint Type Inference</b>：如架构图所示，将对应节点的Embedding输入到L层的GCN里，得到的结果Z和原始的H拼接得到F，然后输入带有Softmax的全连接网络。其中GCN运算为：
+				<div align="center"><img class="img-responsive" src="paper_3_images/7.png"></div></p>
+				<p style="font-size:20px">最终的计算公式为：</br><div align="center"><img class="img-responsive" src="paper_3_images/8.png"><img class="img-responsive" src="paper_3_images/9.png"></div></p>
 				<h2 style="color:#000000"><b>实验</b></h2>
-				<p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores.</p>
+				<p style="font-size:20px">数据集：ACE05，包含了7个实体类型和6个关系类型，具体的分为351个训练集、80个验证集以及80个测试集，评价指标是P、R以及F1。</br>
+				下图为本文提出的方法与现有方法的比较（由于本文实验部分与博主的研究方向不同，故对实验结果不做评价与分析）：
+				<div align="center"><img class="img-responsive" src="paper_3_images/10.png"></div></p>
+				<p style="font-size:20px"><span style="color:#DC143C">博主认为：本文的亮点在于作者使用了二元关系节点{0,1}来决定实体节点的连接与否，起到了gate的作用，可以为将来构建关系图提供参考，其余部分与通用的结构类似</span></p>
 			</div>
 			<div class="svg-container single-post-svg single-svg-bottom svg-block">
 				<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1920 150">

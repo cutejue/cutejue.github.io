@@ -107,7 +107,7 @@
 				</svg>
 			</div>
 			<div class="post" style="">
-				<h1 class="entry-title">GRAPHFLOW: Exploiting Conversation Flow with Graph Neural Networks for Conversational Machine Comprehension</h1>
+				<h1 class="entry-title">Attention Guided Graph Convolutional Networks for Relation Extraction</h1>
 					<!--div class="single-thumb">
 						<img src="images/single.jpg" alt="About">
 					</div-->
@@ -115,7 +115,7 @@
 				<p style="font-size:20px">Zhijiang Guo, Yan Zhang, Wei Lu 发表于 ACL 2019 </p>
 				<p style="font-size:30px"><b>摘要</b></p>
 				<p style="font-size:20px"><b>问题</b>：依存树包含了丰富的对实体关系抽取有用的结构化信息，但如何有效地利用依存树中的相关信息而忽略不相关信息目前仍是挑战，现有的方法是<span style="color:#DC143C">基于规则的硬剪枝策略（rule-based hard-pruning）</span>，但并不能实现很好的结果</p>
-				<p style="font-size:20px"><b>方法</b>：作者提出了一个<span style="color:#DC143C">基于注意力引导图卷积神经网络网络（AGGCN，Attention Guided Graph Convolutional Networks）</span>的方法，该网络可以被认为是一种<span style="color:#DC143C">软剪枝（soft-pruning）方法</span>，将原始的依存树转化为全连接的边权重图（FC edge-weighted graph），能够自动地学习如何有选择地处理依存树中有关联的子结构（sub-structures）</p>
+				<p style="font-size:20px"><b>方法</b>：作者提出了一个<span style="color:#DC143C">基于注意力引导图卷积神经网络（AGGCN，Attention Guided Graph Convolutional Networks）</span>的方法，该网络可以被认为是一种<span style="color:#DC143C">软剪枝（soft-pruning）方法</span>，将原始的依存树转化为全连接的边权重图（FC edge-weighted graph），能够自动地学习如何有选择地处理依存树中有关联的子结构（sub-structures）</p>
 				<p style="font-size:20px"><b>结果</b>：该模型在<span style="color:#DC143C">跨句n元关系抽取（cross-sentence n-ary RE）和大规模句子级别关系抽取（large-scale sentence-level RE）任务中取得了比之前方法更好的结果8%和6%</span></p>
 				<p style="font-size:30px"><b>算法</b></p>
 				<p style="font-size:30px">AGGCN模型架构图如下：<img class="img-responsive" src="paper_2_images/0.png"></br>作者将模型分为三个部分：Attention guided layer、Densely connected layer以及Linear combination layer</p>
